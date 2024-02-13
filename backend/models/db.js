@@ -80,14 +80,18 @@ const createTable = () => {
     );
     
     CREATE TABLE gym_user(
-        id SERIAL NOT NULL,
-        user_id INT,
-        gym_id INT,
-        FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (gym_id) REFERENCES gyms(id),
-        is_deleted SMALLINT DEFAULT 0,
-        PRIMARY KEY (id)
-    );
+      id SERIAL NOT NULL,
+      user_id INT,
+      gym_id INT,
+      plan_id INT,
+      endSub TIMESTAMP,
+      created_at TIMESTAMP DEFAULT NOW(),
+      FOREIGN KEY (user_id) REFERENCES users(id),
+      FOREIGN KEY (gym_id) REFERENCES gyms(id),
+      FOREIGN KEY (plan_id) REFERENCES gym_plan(id),
+      is_deleted SMALLINT DEFAULT 0,
+      PRIMARY KEY (id)
+  );
     
     CREATE TABLE gym_coach(
        id SERIAL NOT NULL,

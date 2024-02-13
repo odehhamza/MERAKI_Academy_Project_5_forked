@@ -64,6 +64,8 @@ CREATE TABLE gym_user(
     user_id INT,
     gym_id INT,
     plan_id INT,
+    endSub TIMESTAMP DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (gym_id) REFERENCES gyms(id),
     FOREIGN KEY (plan_id) REFERENCES gym_plan(id),

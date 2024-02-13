@@ -10,7 +10,10 @@ const {createGym,
     deleteCoachInGym,
     createPlan,
     getGymByOwner,
-    getPlanByGymId} = require("../controllers/Gym");
+    getPlanByGymId,
+    createRoomInGym,
+    getRoomByIdRoom,
+    getAllRoomByGymId} = require("../controllers/Gym");
 
 const gymsRouter = express.Router();
 
@@ -25,5 +28,8 @@ gymsRouter.delete("/gym_user", deleteUserInGym);
 gymsRouter.post("/gym_coach", addNewCoachInGym)
 gymsRouter.get("/gym_coach", getAllCoachInGym);
 gymsRouter.delete("/delete_coach", deleteCoachInGym)
+gymsRouter.post("/:gymid/room/create", createRoomInGym);
+gymsRouter.get("/:gymid/room/:idroom",getRoomByIdRoom);
+gymsRouter.get("/:gymid/room/", getAllRoomByGymId);
 
 module.exports = gymsRouter
