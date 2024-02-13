@@ -160,7 +160,9 @@ updatedUserInfo:result.rows[0]
 
 
   const getAllUsers =(req,res)=>{
-    pool.query(`SELECT * FROM users`)
+    pool.query(`SELECT users.* , roles.role FROM users
+    JOIN roles ON users.role_id=roles.id
+    WHERE roles.role='USER'`)
     .then((result) => {
       if (!result) {
         return res.status(404).json({
@@ -186,15 +188,10 @@ updatedUserInfo:result.rows[0]
   
 
   const getAllCoachs =(req,res)=>{
-    const  id= req.params.id;
-    //console.log('user id',id);
-    if (!id) {
-      res.status(404).json({
-        success:false,
-        message: "User ID is required"
-      });
-    }
-    pool.query(`SELECT * FROM users WHERE role='coach'`).then((result)=>{
+    
+    pool.query(`SELECT users.* , roles.role FROM users
+    JOIN roles ON users.role_id=roles.id
+    WHERE roles.role='COACH'`).then((result)=>{
       res.status(200).json({
         success :true ,
         message:'Showing All Coaches',

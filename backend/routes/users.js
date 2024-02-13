@@ -8,7 +8,7 @@ usersRouter.post("/register", register);
 usersRouter.post("/login", login);
 usersRouter.post("/info/create",AddUserinfo)
 usersRouter.get("/", getAllUsers)
-usersRouter.get("/coaches", getAllCoachs)
+usersRouter.get("/coachs", getAllCoachs)
 //usersRouter.get("/info/:id",getUserInfoById)
 usersRouter.put('/info/update', updateUserInfo)
 usersRouter.get('/info',getUserInfoByUserId)
