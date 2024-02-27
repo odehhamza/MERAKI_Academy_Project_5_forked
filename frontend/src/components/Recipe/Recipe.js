@@ -19,6 +19,8 @@ const Recipe = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedRecipes, setSelectedRecipes] = useState([]);
   const [visibleItems, setVisibleItems] = useState(4);
+  const [messages, setMessages] = useState([]);
+  const [inputText, setInputText] = useState('');
 
   const { token } = useSelector((state) => {
     return {
@@ -26,6 +28,7 @@ const Recipe = () => {
       userId: state.auth.userId,
     };
   });
+  
 
   const fetchRecipes = (query) => {
     axios
@@ -93,6 +96,14 @@ const Recipe = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
+            <Dropdown.Item
+                onClick={() => {
+                  setCalorieRange("ALL");
+                  handleDropdownChange(0, 2000);
+                }}
+              >
+                ALL Calories
+              </Dropdown.Item>
               <Dropdown.Item
                 onClick={() => {
                   setCalorieRange("0-200");
@@ -283,6 +294,7 @@ const Recipe = () => {
             )}
           </Row>
         </div>
+        
       </div>
     </div>
   );
